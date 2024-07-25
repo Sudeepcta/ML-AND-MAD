@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+def visualize_dataset(file_path):
+   df = pd.read_csv(file_path)
+   sns.pairplot(df)
+   plt.title("Pairplot of the Dataset")
+   plt.show()
+   if df.iloc[:, 0].dtype == 'object':
+      sns.countplot(x=df.columns[0], data=df)
+      plt.title("Bar Chart of Categorical Column")
+      plt.xlabel(df.columns[0])
+      plt.ylabel("Count")
+      plt.show()
+   else:
+      print("No categorical column found to plot bar chart.")
+file_path = 'train.csv' 
+visualize_dataset(file_path)
